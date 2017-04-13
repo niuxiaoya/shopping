@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>溯源查询</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/button.css">
+    <link type="text/css" rel="stylesheet" href="css/index.css">
+</head>
+<body  ng-app="app" ng-controller="ctrl1">
+<header class="header">
+    <i class="fa fa-angle-left left"></i>
+    订单支付
+    <i class="fa fa-bars right"></i>
+</header>
+<section class="section">
+    <div class="info">
+        <div class="user">
+            路飞   <span> 138****8888</span>
+        </div>
+        <div class="address">
+            <i class="fa fa-gbp left"></i>
+            北京市海淀区知春路北京市海淀区知春路北京市海淀区 知春路
+            <i class="fa fa-angle-right right"></i>
+        </div>
+    </div>
+    <div class="images"></div>
+    <div class="title">
+        <i class="fa fa-hourglass-start"></i>
+        恒之然旗舰店
+    </div>
+    <div class="content">
+        <div>
+            <dl>
+                <dt><img src="images/img2.png" alt="img2"></dt>
+                <dd>
+                    <h4>维维嚼益嚼水果大维维嚼 益嚼水果大豆棒橙味...</h4>
+                    <ul>
+                        <li><span style="font-size: 14px;color: #fc4141;font-weight: 600">￥988.00</span><span style="color: #333;font-size: 12px">¥1000.00</span></li>
+                        <li>
+                            <b ng-click="reduce()">-</b><b>{{num}}</b><b ng-click="plus()">+</b>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <p>商品总金额: <span>{{count}}</span></p>
+            <p>运费: <span>¥10.00</span></p>
+            <p>总额(含运费): <b>¥<span>{{price}}</span></b></p>
+        </div>
+    </div>
+    <div class="money">
+        <h3>
+            <b>余额支付 ¥100.00</b>
+            <label class="toggle-radio toggle-orange right">
+                <input type="checkbox">
+
+                <span class="track">
+                    <div class="icon"></div>
+                </span>
+            </label>
+        </h3>
+        <h3>
+            <b>奖金支付 ¥100.00</b>
+            <label class="toggle-radio right">
+                <input type="checkbox" checked="checked">
+
+                <span class="track">
+                    <div class="icon"></div>
+                </span>
+            </label>
+        </h3>
+        <h3 class="pos-relative">
+            <b>其他支付 ¥100.00</b>
+            <i class="fa fa-angle-right right f20"></i>
+            <div class="pos-absolute mark">金额不足，请选择其他支付方式！</div>
+        </h3>
+    </div>
+</section>
+<footer class="footer">
+    <div></div>
+    <div><h3>总计:<b>¥<span>{{price}}</span></b></h3><p>(含运费)</p></div>
+    <div class="commit">提交订单</div>
+</footer>
+<script src="../libs/angular.js"></script>
+<script>
+    var app=angular.module("app",[]);
+    app.controller("ctrl1",function($scope,$rootScope){
+        $scope.num=1;
+        $scope.count=998.00;
+        $scope.price=998.00;
+        $scope.reduce=function(){
+            if($scope.num>1){
+                $scope.num--;
+                $scope.price=$scope.num*$scope.count;
+                $rootScope.passPrice=$scope.price;
+            }else{
+                alert("不能少于1个哦！")
+            }
+        };
+        $scope.plus=function(){
+            if($scope.num<5){
+                $scope.num++;
+                $scope.price=$scope.num*$scope.count;
+                $rootScope.passPrice=$scope.price;
+            }else{
+                alert("不能超过5个哦！")
+            }
+        };
+    });
+</script>
+</body>
+</html>
+
